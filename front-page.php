@@ -7,18 +7,24 @@
       <h1><?php the_field('mv_title'); ?></h1>
 
       <div class="mv-buttons">
+        <?php
+        $shop = get_field('mv_shop_button');
+        // データがちゃんと入っているかチェック
+        if ($shop && is_array($shop)) :
+        ?>
+          <a href="<?php echo esc_url($shop['url']); ?>" target="<?php echo esc_attr($shop['target']); ?>" class="btn mv-btn">
+            <?php echo esc_html($shop['title']); ?>
+          </a>
+        <?php endif; ?>
 
-        <?php $shop = get_field('mv_shop_button'); ?>
-        <?php $learn = get_field('mv_learn_more_button'); ?>
-
-        <a href="<?php echo $shop['url']; ?>" target="<?php echo $shop['target']; ?>" class="btn mv-btn">
-          <?php echo $shop['title']; ?>
-        </a>
-
-        <a href="<?php echo $learn['url']; ?>" target="<?php echo $learn['target']; ?>">
-          <?php echo $learn['title']; ?>
-        </a>
-
+        <?php
+        $learn = get_field('mv_learn_more_button');
+        if ($learn && is_array($learn)) :
+        ?>
+          <a href="<?php echo esc_url($learn['url']); ?>" target="<?php echo esc_attr($learn['target']); ?>">
+            <?php echo esc_html($learn['title']); ?>
+          </a>
+        <?php endif; ?>
       </div>
     </div>
   </section>
@@ -27,7 +33,7 @@
 
       <h2 class="section-title">Top Products</h2>
 
-      <div class="products">
+      <div class="products product-grid">
 
         <?php
         $args = array(
@@ -36,39 +42,21 @@
           'meta_query' => array(
             array(
               'key' => 'show_in_top_products',
-              'value' => 1,
+              'value' => '1',
               'compare' => '='
             )
           )
         );
 
-        $products = new WP_Query($args);
+        $top_products = new WP_Query($args);
 
-        if ($products->have_posts()) :
-          while ($products->have_posts()) : $products->the_post();
+        if ($top_products->have_posts()) :
+          while ($top_products->have_posts()) : $top_products->the_post();
 
             $price = get_field('price'); // ACFで作る想定
         ?>
 
-            <a href="<?php the_permalink(); ?>" class="product-card">
-
-              <?php if (has_post_thumbnail()) : ?>
-                <?php the_post_thumbnail(); ?>
-              <?php endif; ?>
-
-              <div class="product-card__body">
-
-                <p class="product-card__name"><?php the_title(); ?></p>
-
-                <?php if ($price) : ?>
-                  <p class="product-card__price">$<?php echo esc_html($price); ?></p>
-                <?php endif; ?>
-
-                <div class="btn product-card__button">Shop Now</div>
-
-              </div>
-
-            </a>
+            <?php get_template_part('template-parts/product-card'); ?>
 
         <?php
           endwhile;
@@ -99,25 +87,31 @@
         <li><a href="#">Tart</a></li>
         <li><a href="#">Favorite</a></li>
       </ul>
-      <div class="gallery">
-        <a href="#" class="gallery-item">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/section2-1.png" alt="Cake" decoding="async" />
-        </a>
-        <a href="#" class="gallery-item">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/section2-2.png" alt="Cake" decoding="async" />
-        </a>
-        <a href="#" class="gallery-item">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/section2-3.png" alt="Cake" decoding="async" />
-        </a>
-        <a href="#" class="gallery-item">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/section2-4.png" alt="Cake" decoding="async" />
-        </a>
-        <a href="#" class="gallery-item">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/section2-5.png" alt="Cake" decoding="async" />
-        </a>
-        <a href="#" class="gallery-item">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/section2-6.png" alt="Cake" decoding="async" />
-        </a>
+
+      <div class="gallery product-grid">
+        <?php
+        $args = array(
+          'post_type' => 'product',
+          'posts_per_page' => -1
+        );
+
+        $explore_products = new WP_Query($args);
+
+        if ($explore_products->have_posts()) :
+          while ($explore_products->have_posts()) :
+            $explore_products->the_post();
+
+            $price = get_field('price');
+        ?>
+
+            <?php get_template_part('template-parts/product-card'); ?>
+
+        <?php
+          endwhile;
+          wp_reset_postdata();
+        endif;
+        ?>
+
       </div>
     </div>
   </section>
@@ -134,29 +128,39 @@
   <section class="section3">
     <div class="wrapper">
       <h2 class="section-title">Featured Treats</h2>
-      <div class="featured">
-        <div class="featured-item">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/section3-1.png" alt="商品名" decoding="async" />
-          <div class="featured-info">
-            <p class="featured-name">Puff Pastry</p>
-            <p class="featured-price">$8</p>
-          </div>
-        </div>
-        <div class="featured-item">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/section3-2.png" alt="商品名" decoding="async" />
-          <div class="featured-info">
-            <p class="featured-name">Doughnuts</p>
-            <p class="featured-price">$8</p>
-          </div>
-        </div>
-        <div class="featured-item">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/section3-3.png" alt="商品名" decoding="async" />
-          <div class="featured-info">
-            <p class="featured-name">Brownies</p>
-            <p class="featured-price">$8</p>
-          </div>
-        </div>
+
+
+      <div class="featured product-grid">
+        <?php
+        $args = array(
+          'post_type' => 'product',
+          'posts_per_page' => 3,
+          'meta_query' => array(
+            array(
+              'key' => 'featured',
+              'value' => '1',
+              'compare' => '='
+            )
+          )
+        );
+
+        $featured_products = new WP_Query($args);
+
+        if ($featured_products->have_posts()) :
+          while ($featured_products->have_posts()) : $featured_products->the_post();
+
+            $price = get_field('price');
+        ?>
+
+            <?php get_template_part('template-parts/product-card'); ?>
+
+        <?php
+          endwhile;
+          wp_reset_postdata();
+        endif;
+        ?>
       </div>
+
     </div>
   </section>
 </main>
