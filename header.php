@@ -33,10 +33,12 @@
       </button>
       <nav>
         <ul>
-          <li><a href="#" class="active">Home</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Services</a></li>
+          <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="<?php echo esc_url(home_url('/about/')); ?>">
+              About
+            </a></li>
+          <li><a href="#">Contact</a></li>
         </ul>
       </nav>
     </div>

@@ -1,10 +1,19 @@
 <?php get_header(); ?>
 
 <main>
-  <section class="mv">
+  <?php
+  $mv_image = get_field('mv_image');
+  ?>
+
+  <section class="mv"
+    <?php if ($mv_image): ?>
+    style="background-image:url('<?php echo esc_url($mv_image); ?>');"
+    <?php endif; ?>>
     <div class="wrapper">
       <p class="mv-sub"><?php the_field('mv_subtitle'); ?></p>
-      <h1><?php the_field('mv_title'); ?></h1>
+      <h1>
+        <?php echo nl2br(esc_html(get_field('mv_title'))); ?>
+      </h1>
 
       <div class="mv-buttons">
         <?php
@@ -12,8 +21,14 @@
         // データがちゃんと入っているかチェック
         if ($shop && is_array($shop)) :
         ?>
-          <a href="<?php echo esc_url($shop['url']); ?>" target="<?php echo esc_attr($shop['target']); ?>" class="btn mv-btn">
+          <a
+            href="<?php echo esc_url($shop['url']); ?>"
+            target="<?php echo esc_attr($shop['target']); ?>"
+            rel="noopener noreferrer"
+            class="btn mv-btn">
+
             <?php echo esc_html($shop['title']); ?>
+
           </a>
         <?php endif; ?>
 
@@ -53,12 +68,8 @@
         if ($top_products->have_posts()) :
           while ($top_products->have_posts()) : $top_products->the_post();
 
-            $price = get_field('price'); // ACFで作る想定
-        ?>
+            get_template_part('template-parts/product-card');
 
-            <?php get_template_part('template-parts/product-card'); ?>
-
-        <?php
           endwhile;
           wp_reset_postdata();
         endif;
@@ -67,26 +78,85 @@
       </div>
     </div>
   </section>
-  <section class="second-visual">
+  <?php
+  $second_image = get_field('second_image');
+  ?>
+
+  <section class="second-visual"
+    <?php if ($second_image): ?>
+    style="background-image:url('<?php echo esc_url($second_image); ?>');"
+    <?php endif; ?>>
     <div class="wrapper">
-      <h2 class="second-title">20% Off Your<br />First Order</h2>
+      <h2 class="second-title">
+        <?php echo nl2br(esc_html(get_field('second_title'))); ?>
+      </h2>
+
       <p class="second-text">
-        Suspendisse ac rhoncus nisl,<br />eu tempor urna. Curabitur vel<br />bibenjgg.
+        <?php echo nl2br(esc_html(get_field('second_text'))); ?>
       </p>
-      <a href="#" class="btn second-btn">Learn More</a>
+      <?php
+      $second_button = get_field('second_button');
+
+      if ($second_button && is_array($second_button)) :
+      ?>
+
+        <a
+          href="<?php echo esc_url($second_button['url']); ?>"
+          target="<?php echo esc_attr($second_button['target']); ?>"
+          class="btn second-btn">
+
+          <?php echo esc_html($second_button['title']); ?>
+
+        </a>
+
+      <?php endif; ?>
     </div>
   </section>
-  <section class="section2">
+  <section class="section2" id="explore-more">
     <div class="wrapper">
       <h2 class="section-title">Explore More</h2>
-      <ul class="category-tab">
-        <li><a href="#" class="active">Cake</a></li>
-        <li><a href="#">Muffins</a></li>
-        <li><a href="#">Croissant</a></li>
-        <li><a href="#">Bread</a></li>
-        <li><a href="#">Tart</a></li>
-        <li><a href="#">Favorite</a></li>
-      </ul>
+      <?php
+      $terms = get_terms([
+        'taxonomy'   => 'product_category',
+        'hide_empty' => false,
+      ]);
+
+      if (!is_wp_error($terms)) :
+
+        $current_category = isset($_GET['category'])
+          ? sanitize_text_field($_GET['category'])
+          : '';
+      ?>
+
+
+
+        <ul class="category-tab">
+
+          <li>
+            <a
+              class="<?php echo empty($current_category) ? 'active' : ''; ?>"
+              href="<?php echo esc_url(remove_query_arg('category')) . '#explore-more'; ?>">
+              All
+            </a>
+          </li>
+
+          <?php foreach ($terms as $term) : ?>
+
+            <li>
+              <a
+                class="<?php echo ($current_category === $term->slug) ? 'active' : ''; ?>"
+                href="<?php echo esc_url(add_query_arg('category', $term->slug)) . '#explore-more'; ?>">
+
+                <?php echo esc_html($term->name); ?>
+
+              </a>
+            </li>
+
+          <?php endforeach; ?>
+
+        </ul>
+
+      <?php endif; ?>
 
       <div class="gallery product-grid">
         <?php
@@ -95,34 +165,66 @@
           'posts_per_page' => -1
         );
 
+        if ($current_category) {
+
+          $args['tax_query'] = array(
+            array(
+              'taxonomy' => 'product_category',
+              'field'    => 'slug',
+              'terms'    => $current_category,
+            )
+          );
+        }
+
         $explore_products = new WP_Query($args);
 
         if ($explore_products->have_posts()) :
           while ($explore_products->have_posts()) :
             $explore_products->the_post();
 
-            $price = get_field('price');
-        ?>
+            get_template_part('template-parts/product-card');
 
-            <?php get_template_part('template-parts/product-card'); ?>
-
-        <?php
           endwhile;
+
           wp_reset_postdata();
+
         endif;
         ?>
 
       </div>
     </div>
   </section>
-  <section class="third-visual">
+  <?php
+  $third_image = get_field('third_image');
+  ?>
+
+  <section class="third-visual"
+    <?php if ($third_image): ?>
+    style="background-image:url('<?php echo esc_url($third_image); ?>');"
+    <?php endif; ?>>
     <div class="wrapper">
-      <h2 class="third-title">About us</h2>
+      <h2 class="third-title">
+        <?php echo esc_html(get_field('third_title')); ?>
+      </h2>
       <p class="third-text">
-        Suspendisse ac rhoncus nisl,<br />eu tempor urna. Curabitur vel<br />bibendum
-        lorem. Morbi<br />convallis.
+        <?php echo nl2br(esc_html(get_field('third_text'))); ?>
       </p>
-      <a href="#" class="btn third-btn">Read More</a>
+      <?php
+      $third_button = get_field('third_button');
+
+      if ($third_button && is_array($third_button)) :
+      ?>
+
+        <a
+          href="<?php echo esc_url($third_button['url']); ?>"
+          target="<?php echo esc_attr($third_button['target']); ?>"
+          class="btn third-btn">
+
+          <?php echo esc_html($third_button['title']); ?>
+
+        </a>
+
+      <?php endif; ?>
     </div>
   </section>
   <section class="section3">
@@ -147,16 +249,22 @@
         $featured_products = new WP_Query($args);
 
         if ($featured_products->have_posts()) :
-          while ($featured_products->have_posts()) : $featured_products->the_post();
 
-            $price = get_field('price');
-        ?>
+          while ($featured_products->have_posts()) :
+            $featured_products->the_post();
 
-            <?php get_template_part('template-parts/product-card'); ?>
+            get_template_part('template-parts/product-card');
 
-        <?php
           endwhile;
+
           wp_reset_postdata();
+
+        else :
+        ?>
+          <p>
+            商品準備中です。
+          </p>
+        <?php
         endif;
         ?>
       </div>

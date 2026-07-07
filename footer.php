@@ -37,9 +37,9 @@
     <div class="footer-middle">
       <div class="footer-about">
         <h3 class="footer-title">About Us</h3>
-        <p class="footer-text">(456) 789-12301</p>
-        <p class="footer-text">info@modrino.co.uk</p>
-        <p class="footer-text">South 13th street</p>
+        <p class="footer-text">03-1234-5678</p>
+        <p class="footer-text">info@examplebakery.com</p>
+        <p class="footer-text">123 Bakery Street</p>
         <p class="footer-text">New york America</p>
       </div>
       <div class="footer-explore">
