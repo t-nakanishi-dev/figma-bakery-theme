@@ -10,10 +10,17 @@ Figmaで作成したデザインをもとに制作した、架空のベーカリ
 
 # 📸 スクリーンショット
 
-* トップページ
-* 商品一覧
+### Home Page
 
-※後日追加予定
+<img src="./images/screenshots/home-pc.png" width="800">
+
+### Product Page
+
+<img src="./images/screenshots/product-pc.png" width="800">
+
+### Single Product Page
+
+<img src="./images/screenshots/single-product-pc.png" width="800">
 
 ---
 
