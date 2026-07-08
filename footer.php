@@ -38,7 +38,7 @@
       <div class="footer-about">
         <h3 class="footer-title">About Us</h3>
         <p class="footer-text">03-1234-5678</p>
-        <p class="footer-text">info@examplebakery.com</p>
+        <p class="footer-text">info@example<br />bakery.com</p>
         <p class="footer-text">123 Bakery Street</p>
         <p class="footer-text">New york America</p>
       </div>
