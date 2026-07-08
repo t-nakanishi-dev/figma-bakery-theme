@@ -27,7 +27,7 @@
     <?php endif; ?>
 
 
-    <span class="btn product-card__button">
+    <span class="btn">
       Shop Now
     </span>
 

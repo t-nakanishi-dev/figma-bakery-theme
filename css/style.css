@@ -36,12 +36,17 @@ li {
   margin: 0 auto;
 }
 .btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
+  white-space: nowrap;
+  padding: 14px 36px;
   background: #933c24;
-  line-height: 1;
-  transition: 0.3s;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: .3s ease;
+  text-align: center;
+    
 }
 .btn:hover {
   opacity: 0.8;
@@ -51,6 +56,10 @@ li {
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:20px;
+}
+
+.page-content {
+    padding-top: 160px;
 }
 
 /* ヘッダー */
@@ -130,13 +139,6 @@ li {
   align-items: center;
 }
 
-.mv-buttons .mv-btn {
-  color: #f5f5f5;
-  font-size: 24px;
-  border-radius: 8px;
-  width: 194px;
-  height: 65px;
-}
 .mv-buttons a:last-child {
   color: #e9bd8c;
   font-size: 24px;
@@ -199,14 +201,6 @@ li {
   margin-top:10px;
 }
 
-.product-card__button{
-    width:140px;
-    height:48px;
-    border-radius:6px;
-    color:#fff;
-    margin-top:auto;
-}
-
 /* セカンドビジュアル */
 .second-visual {
   background-size: cover;
@@ -239,14 +233,6 @@ li {
   text-align: center;
   font-size: 24px;
   line-height: 1.2;
-}
-
-.second-visual .second-btn {
-  color: white;
-  border-radius: 10px;
-  width: 202px;
-  height: 63px;
-  font-size: 24px;
 }
 
 /* セクション2 */
@@ -322,14 +308,6 @@ li {
   text-align: center;
   font-size: 24px;
   line-height: 1.2;
-}
-
-.third-visual .third-btn {
-  color: white;
-  border-radius: 10px;
-  width: 195px;
-  height: 63px;
-  font-size: 24px;
 }
 
 /* セクション3 */
@@ -607,18 +585,12 @@ li {
     line-height: 1.8;
 }
 
-.error-404 .btn {
-    display: inline-block;
-    padding: 14px 36px;
-    background: #7a4b2c;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 999px;
-    transition: .3s;
-}
-
-.error-404 .btn:hover {
-    background: #5d3921;
+/* single-productページ */
+.product-single{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:20px;
 }
 
 /* レスポンシブ */

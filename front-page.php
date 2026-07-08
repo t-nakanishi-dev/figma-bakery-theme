@@ -25,7 +25,7 @@
             href="<?php echo esc_url($shop['url']); ?>"
             target="<?php echo esc_attr($shop['target']); ?>"
             rel="noopener noreferrer"
-            class="btn mv-btn">
+            class="btn">
 
             <?php echo esc_html($shop['title']); ?>
 
@@ -103,7 +103,7 @@
         <a
           href="<?php echo esc_url($second_button['url']); ?>"
           target="<?php echo esc_attr($second_button['target']); ?>"
-          class="btn second-btn">
+          class="btn">
 
           <?php echo esc_html($second_button['title']); ?>
 
@@ -218,7 +218,7 @@
         <a
           href="<?php echo esc_url($third_button['url']); ?>"
           target="<?php echo esc_attr($third_button['target']); ?>"
-          class="btn third-btn">
+          class="btn">
 
           <?php echo esc_html($third_button['title']); ?>
 

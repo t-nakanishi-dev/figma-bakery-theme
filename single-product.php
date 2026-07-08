@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="single-product">
+<main class="single-product page-content">
 
   <div class="wrapper">
 

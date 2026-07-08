@@ -6,7 +6,7 @@
       <p class="mv-sub">Delicious Cafe</p>
       <h1>Sweet Treats,<br />Perfect Eats</h1>
       <div class="mv-buttons">
-        <a href="#" class="btn mv-btn">Shop Now</a>
+        <a href="#" class="btn">Shop Now</a>
         <a href="#">Learn More</a>
       </div>
     </div>
@@ -25,7 +25,7 @@
 
             <div class="product-info-bottom">
               <p class="product-name">Whole Grain<br />Bread</p>
-              <a href="#" class="btn btn-add">Add</a>
+              <a href="#" class="btn">Add</a>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
 
             <div class="product-info-bottom">
               <p class="product-name">Whole Grain<br />Bread</p>
-              <a href="#" class="btn btn-add">Add</a>
+              <a href="#" class="btn">Add</a>
             </div>
           </div>
         </div>
@@ -55,7 +55,7 @@
 
             <div class="product-info-bottom">
               <p class="product-name">Whole Grain<br />Bread</p>
-              <a href="#" class="btn btn-add">Add</a>
+              <a href="#" class="btn">Add</a>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@
 
             <div class="product-info-bottom">
               <p class="product-name">Whole Grain<br />Bread</p>
-              <a href="#" class="btn btn-add">Add</a>
+              <a href="#" class="btn">Add</a>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@
 
             <div class="product-info-bottom">
               <p class="product-name">Whole Grain<br />Bread</p>
-              <a href="#" class="btn btn-add">Add</a>
+              <a href="#" class="btn">Add</a>
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@
 
             <div class="product-info-bottom">
               <p class="product-name">Whole Grain<br />Bread</p>
-              <a href="#" class="btn btn-add">Add</a>
+              <a href="#" class="btn">Add</a>
             </div>
           </div>
         </div>
@@ -113,7 +113,7 @@
       <p class="second-text">
         Suspendisse ac rhoncus nisl,<br />eu tempor urna. Curabitur vel<br />bibenjgg.
       </p>
-      <a href="#" class="btn second-btn">Learn More</a>
+      <a href="#" class="btn">Learn More</a>
     </div>
   </section>
   <section class="section2">
@@ -156,7 +156,7 @@
         Suspendisse ac rhoncus nisl,<br />eu tempor urna. Curabitur vel<br />bibendum
         lorem. Morbi<br />convallis.
       </p>
-      <a href="#" class="btn third-btn">Read More</a>
+      <a href="#" class="btn">Read More</a>
     </div>
   </section>
   <section class="section3">

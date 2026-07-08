@@ -17,7 +17,7 @@
   <header class="header">
     <div class="wrapper">
       <h1 class="header-logo">
-        <a href="#">
+        <a href="<?php echo esc_url(home_url('/')); ?>">
           <img
             src="<?php echo get_template_directory_uri(); ?>/images/bakery-logo.png"
             width="114"

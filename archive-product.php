@@ -36,7 +36,7 @@
                   <?php the_title(); ?>
                 </p>
 
-                <a href="<?php the_permalink(); ?>" class="btn btn-add">
+                <a href="<?php the_permalink(); ?>" class="btn">
                   View
                 </a>
               </div>
