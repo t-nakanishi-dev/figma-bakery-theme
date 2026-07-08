@@ -35,15 +35,17 @@ add_action('wp_enqueue_scripts', 'bakery_enqueue_scripts');
 
 function bakery_register_post_type()
 {
-
   register_post_type(
     'product',
     array(
-      'label' => 'Products',
-      'public' => true,
-      'has_archive' => true,
+      'label'         => 'Products',
+      'public'        => true,
+      'has_archive'   => 'products',
+      'rewrite'       => array(
+        'slug' => 'products'
+      ),
       'menu_position' => 5,
-      'supports' => array(
+      'supports'      => array(
         'title',
         'editor',
         'thumbnail'
@@ -51,6 +53,7 @@ function bakery_register_post_type()
     )
   );
 }
+
 add_action('init', 'bakery_register_post_type');
 
 function bakery_register_taxonomy()

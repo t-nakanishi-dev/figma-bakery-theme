@@ -34,7 +34,7 @@
       <nav>
         <ul>
           <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
-          <li><a href="#">Menu</a></li>
+          <li><a href="<?php echo esc_url(home_url('/products/')); ?>">Products</a></li>
           <li><a href="<?php echo esc_url(home_url('/about/')); ?>">
               About
             </a></li>
