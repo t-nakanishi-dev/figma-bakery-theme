@@ -692,4 +692,7 @@ li {
 .contact-map iframe{
     height:300px;
 }
+ .product-single {
+    flex-direction: column;
+  }
 }
