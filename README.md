@@ -14,8 +14,6 @@ Figmaで作成したデザインをもとに制作した、架空のベーカリ
 
 <img src="./images/screenshots/home-pc.png" width="800">
 
-### Product Page
-
 <img src="./images/screenshots/product-pc.png" width="800">
 
 ### Single Product Page
