@@ -1,5 +1,12 @@
 # 🍞 Bakery Theme – WordPressオリジナルテーマ
 
+## 🌐 デプロイURL
+
+https://figma-bakery.t-nakanishi-dev.com/
+※スマートフォン・PC両方に対応
+
+---
+
 ## 🔗 概要
 
 Figmaで作成したデザインをもとに制作した、架空のベーカリーサイトのWordPressオリジナルテーマです。
